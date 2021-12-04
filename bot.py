@@ -14,8 +14,9 @@ from bs4 import BeautifulSoup
 from keep_alive import keep_alive
 
 # FOR READING THE VALUES FROM .env FILE USE THIS:
-TOKEN = os.environ['DISCORD_TOKEN']
-GUILD = os.environ["DISCORD_GUILD"]
+# TOKEN = os.environ['DISCORD_TOKEN']
+
+TOKEN = "ODgzNjkzOTY4MDQ5NzIxMzU1.YTNqJA.F66cHoRBhUkuHC-O-N01OnyiZ58"
 
 FFMPEG_OPTIONS = {
     'before_options':
