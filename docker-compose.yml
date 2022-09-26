@@ -5,3 +5,4 @@ services:
     # '.' represents the current directory in which
     # docker-compose.yml is present.
     build: .
+    image: "token:${DISCORD_TOKEN}"

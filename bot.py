@@ -14,9 +14,12 @@ from discord.ext import commands
 import re, requests, subprocess, urllib.parse, urllib.request
 from bs4 import BeautifulSoup
 
+from dotenv import load_dotenv
+load_dotenv()
+
 # FOR READING THE VALUES FROM .env FILE USE THIS:
-TOKEN = "ODgzNjkzOTY4MDQ5NzIxMzU1.YTNqJA.F66cHoRBhUkuHC-O-N01OnyiZ58"
-GUILD = "https://discord.com/api/oauth2/authorize?client_id=883693968049721355&permissions=8&scope=bot"
+TOKEN = os.getenv("DISCORD_TOKEN")
+GUILD = os.getenv("DISCORD_GUILD")
 
 FFMPEG_OPTIONS = {
     'before_options':
