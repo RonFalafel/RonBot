@@ -1,0 +1,4 @@
+beautifulsoup4==4.11.1
+discord.py==2.0.1
+requests==2.26.0
+youtube_dl==2021.6.6

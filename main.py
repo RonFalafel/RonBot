@@ -1,20 +1,18 @@
 # bot.py
-# from asyncore import read
-# from asyncore import write
 import os
 import random
 import discord
-from discord.ext import commands
 import asyncio
 
-# from requests.models import Response
+from requests.models import Response
 import youtube_dl
 
 from discord.ext import commands
 import re, requests, subprocess, urllib.parse, urllib.request
 from bs4 import BeautifulSoup
 
-# FOR READING THE VALUES FROM .env FILE USE THIS:
+# from keep_alive import keep_alive
+
 TOKEN = "ODgzNjkzOTY4MDQ5NzIxMzU1.YTNqJA.F66cHoRBhUkuHC-O-N01OnyiZ58"
 GUILD = "https://discord.com/api/oauth2/authorize?client_id=883693968049721355&permissions=8&scope=bot"
 
@@ -24,9 +22,9 @@ FFMPEG_OPTIONS = {
     'options': '-vn'
 }
 
-intents = discord.Intents().all()
 help_command = commands.DefaultHelpCommand(no_category='Commands')
-bot = commands.Bot(command_prefix='-', help_command=help_command, intents=intents)
+bot = commands.Bot(command_prefix='-', help_command=help_command)
+
 
 @bot.command(name='q', help='Responds with a random quote!')
 async def quote(ctx):
@@ -67,9 +65,9 @@ async def play(ctx, *args):
                    "\" at the address \"" + clip + "\"")
 
     ydl_opts = {
-      'format': 'bestaudio',
-      'cookiefile': './youtube.com_cookies.txt'
-      }
+        'format': 'bestaudio',
+        'cookiefile': './youtube.com_cookies.txt'
+    }
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         info = ydl.extract_info(clip, download=False)
         URL = info['formats'][0]['url']
@@ -118,10 +116,12 @@ async def air_horn(ctx):
 async def bonk(ctx):
     await play_file_no_disconnect(ctx, "./SoundEffects/bonk.mp3")
 
+
 @bot.command(name="shtek", help='For when need shut up')
 async def shtek(ctx):
     await play_file_no_disconnect(ctx, "./SoundEffects/shtek.mp3")
-  
+
+
 @bot.command(name="mine", help='Minecraft ouchy moment')
 async def minecraft_ouch(ctx):
     await play_file_no_disconnect(ctx, "./SoundEffects/minecrafthit.mp3")
@@ -206,10 +206,6 @@ async def play_file_no_disconnect(ctx, path):
     # Delete command after the audio is done playing.
     await ctx.message.delete()
 
-@bot.event #print that the bot is ready to make sure that it actually logged on
-async def on_ready():
-    print('Logged in as:')
-    print(bot.user.name)
 
+# keep_alive()
 bot.run(TOKEN)
-
