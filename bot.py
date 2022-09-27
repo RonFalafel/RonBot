@@ -1,6 +1,4 @@
 # bot.py
-# from asyncore import read
-# from asyncore import write
 import os
 import random
 import discord
@@ -30,20 +28,6 @@ FFMPEG_OPTIONS = {
 intents = discord.Intents().all()
 help_command = commands.DefaultHelpCommand(no_category='Commands')
 bot = commands.Bot(command_prefix='-', help_command=help_command, intents=intents)
-
-@bot.command(name='q', help='Responds with a random quote!')
-async def quote(ctx):
-    quotes = [
-        'Fuck off you big fat cunt!', 'I eat spaghetti!',
-        'I’m headin’ west like I’m fuckin’ blowin’ Kanye.',
-        'These god damned niggers don’t know their place in white # America.',
-        'Sonic the Hedgehog',
-        'You wouldn\'t happen to have a chili dog on you, would you?'
-    ]
-
-    response = random.choice(quotes)
-    await ctx.send(response)
-
 
 @bot.command(name="play", help='Plays the song that you asked for!')
 async def play(ctx, *args):
@@ -93,82 +77,9 @@ async def play(ctx, *args):
     # Delete command after the audio is done playing.
     await ctx.message.delete()
 
-
-@bot.command(name="rr", help='Try it if you’re brave!')
-async def rick_roll(ctx):
-    await play_file(ctx, "./Sounds/rickroll.mp3")
-
-
-@bot.command(name="rand", help='Plays random sound!')
-async def random_sound(ctx):
-    paths = os.listdir("./Sounds")
-    await play_file(ctx, "./Sounds/" + random.choice(paths))
-
-
-@bot.command(name="fart", help='Plays a fart!')
-async def fart(ctx):
-    paths = os.listdir("./SoundEffects/farts")
-    await play_file_no_disconnect(
-        ctx, "./SoundEffects/farts/" + random.choice(paths))
-
-
-@bot.command(name="ah", help='Air Horn for you’re mama jokes')
-async def air_horn(ctx):
-    await play_file_no_disconnect(ctx, "./SoundEffects/airhorn.mp3")
-
-
-@bot.command(name="bonk", help='For when horny')
-async def bonk(ctx):
-    await play_file_no_disconnect(ctx, "./SoundEffects/bonk.mp3")
-
-@bot.command(name="shtek", help='For when need shut up')
-async def shtek(ctx):
-    await play_file_no_disconnect(ctx, "./SoundEffects/shtek.mp3")
-  
-@bot.command(name="mine", help='Minecraft ouchy moment')
-async def minecraft_ouch(ctx):
-    await play_file_no_disconnect(ctx, "./SoundEffects/minecrafthit.mp3")
-
-
-@bot.command(name="uwu", help='Don’t use this please')
-async def uwu(ctx):
-    await play_file_no_disconnect(ctx, "./SoundEffects/uwu.mp3")
-
-
-@bot.command(name="fortnite", help='Plays the fortnite sound effect')
-async def fortnite(ctx):
-    await play_file_no_disconnect(ctx, "./SoundEffects/fortnite.mp3")
-
-
-@bot.command(name="kiss", help='IF U THINK...')
-async def you_are_dead_wrong(ctx):
-    await play_file_no_disconnect(ctx, "./SoundEffects/youaredeadwrong.mp3")
-
-
-@bot.command(name="good", help='Good Pussy')
-async def good_pussy(ctx):
-    await play_file_no_disconnect(ctx, "./SoundEffects/goodpussy.mp3")
-
-
-@bot.command(name="god", help='God is dead OwO')
-async def god(ctx):
-    await play_file_no_disconnect(ctx, "./SoundEffects/godowo.mp3")
-
-
-@bot.command(name="gta", help='GTA Mission Passed')
-async def gta(ctx):
-    await play_file_no_disconnect(ctx, "./SoundEffects/gta.mp3")
-
-
 @bot.command(name="bye", help='Leaves voice chat')
 async def leave_chat(ctx):
     await play_file(ctx, "./SoundEffects/goodbye.mp3")
-
-
-@bot.command(name="pic", help='Sends a beautiful picture')
-async def pic(ctx):
-    await ctx.send(file=discord.File('./Pictures/sonic.jpg'))
-
 
 async def play_file(ctx, path):
     # Gets voice channel of message author
@@ -190,7 +101,6 @@ async def play_file(ctx, path):
         await ctx.send(str(ctx.author.name) + " is not in a channel.")
     # Delete command after the audio is done playing.
     await ctx.message.delete()
-
 
 async def play_file_no_disconnect(ctx, path):
     # Gets voice channel of message author

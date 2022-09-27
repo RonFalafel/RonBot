@@ -1,9 +1,0 @@
-version: "3"
-services:
-  ronbot:
-    # Path to dockerfile.
-    # '.' represents the current directory in which
-    # docker-compose.yml is present.
-    build: .
-    environment:
-      DISCORD_TOKEN: ${DISCORD_TOKEN}
