@@ -18,4 +18,3 @@ spec:
       containers:
       - name: ronbot
         image: ronbot:latest
-        imagePullPolicy: Never
