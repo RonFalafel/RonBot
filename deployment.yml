@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ronbot
+  namespace: ronbot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ronbot
+      role: web
+  template:
+    metadata:
+      labels:
+        app: ronbot
+        role: web
