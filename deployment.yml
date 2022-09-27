@@ -14,3 +14,7 @@ spec:
       labels:
         app: ronbot
         role: web
+  containers:
+      - name: ronbot
+        image: ronbot:latest
+        imagePullPolicy: Never
