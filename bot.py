@@ -34,19 +34,12 @@ async def play(ctx, *args):
     music_name = ' '.join(args)
     await ctx.send("Searching \"" + music_name + "\"")
     query_string = urllib.parse.urlencode({"search_query": music_name})
-    formatUrl = urllib.request.urlopen("https://www.youtube.com/results?" +
-                                       query_string)
-
-    search_results = re.findall(r"watch\?v=(\S{11})",
-                                formatUrl.read().decode())
-    response = requests.get("https://www.youtube.com/watch?v=" +
-                            "{}".format(search_results[0]))
+    formatUrl = urllib.request.urlopen("https://www.youtube.com/results?" + query_string)
+    search_results = re.findall(r"watch\?v=(\S{11})", formatUrl.read().decode())
+    response = requests.get("https://www.youtube.com/watch?v={}".format(search_results[0]))
     clip = "https://www.youtube.com/watch?v=" + "{}".format(search_results[0])
-
     inspect = BeautifulSoup(response.content, "html.parser")
-
     yt_title = inspect.find_all("meta", property="og:title")
-
     for concatMusic1 in yt_title:
         pass
 
